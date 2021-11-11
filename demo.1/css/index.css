@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+/* css中的路径，都是相对于css文件的 */
+html {
+  background: url("../img/bg.jpg") no-repeat center top;
+  min-width: 1200px;
+}
+
+/* 页面头部样式 */
+.header {
+  width: 990px;
+  height: 112px;
+  background: url("../img/topnav_bg.png");
+  margin: 0 auto;
+}
+.header li {
+  float: left;
+  padding: 0 20px;
+  background: url("../img/icon.png") 0 9px;
+}
+.header ul {
+  margin-top: 25px;
+}
+.header .left {
+  float: left;
+  margin-left: 100px;
+}
+
+.header .right {
+  float: right;
+  margin-right: 100px;
+}
