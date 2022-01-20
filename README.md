@@ -20,7 +20,7 @@
   ，但我觉得算是一个学习的“里程碑”
 ### 阶段四 geek组招新网页复现
 #### 介绍
-* **阶段四中geek组招新网页复现网址  https://Keanuuuuuu.github.io**
+* **阶段四中geek组招新网页复现网址  https://Keanuuuuuu.github.io/geek2.html**
 #### 心得
 * 在阶段三中没有系统进行js的学习，在制作geek网页的时候就利用这段
   充足的时间进行学习，等到寒假准备把学习笔记进行上传
