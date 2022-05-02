@@ -85,6 +85,7 @@
             age:28,
             gender:"nan"
         };
+        // 但是创建的对象都是obj
 
 // 创建函数
         // 可以将要封装的代码以字符串的形式传递给构造函数
@@ -215,6 +216,7 @@
             // 1.当以函数的形式调用时this是window
             // 2.当以方法的形式调用时，谁调用方法this就是谁
             // 3.当以构造函数的形式调用时，this就是新创建的那个对象
+            // 4.在事件的响应函数中，响应函数是谁绑定的this就是谁，比如一个对象绑定onclick
 
 // 构造函数的修改
         // 创建一个Person的构造函数
@@ -303,8 +305,341 @@
         console.log(arr.length);
         arr[arr.length]=9;// 会向数组最后一个位置添加元素
 
-        var arr=["hello",1,true,obj];
-        // 可以是任何数据类型
+        var arr=["hello",1,true,obj,function(){}];
+        // 可以是任何数据类型，包括对象和函数
+//  文档 对象 模型
+         // 浏览器已经为我们提供文档节点对象，这个对象是window属性，可以在页面中直接使用，文档节点代表的是整个网页 -->
+        //  获取到button对象
+        var btn = document.getElementById("btn");
+        // 修改按钮的文字，要么调方法要么调属性
+        btn.innerHTML = " ";
+
+// 事件
+        // 发生的交互瞬间，关键在于事件发生以后去处理这个事件
+        // 我们可以在事件对应的属性中设置一些js代码,不推荐，结构和行为耦合，不方便维护
+        <button id="btn">button</button>
+        // 可以为按钮的对应事件绑定处理函数的形式来响应事件,当事件触发时，其对应的函数将会被调用
+        var btn = document.getElementById("btn");
+        // 单机事件，为单机事件绑定的函数，称为单击响应函数
+        btn.onclick = function(){
+            alert("  ");
+        };
+
+// 获取元素节点
+        innerHTML//通过这个属性可以获取到元素内部的HTML代码：变量.innerHTML，对于自结束标签没有作用（比如input标签），对于自结束标签，想获取什么内容直接 元素.属性名 （id name value）但没有class，如果要读取class要写成classname
+        geElementsByTagName//可以根据标签名来获取一组元素节点对象，这个方法给我们返回一个类数组对象，所有查询到的元素都会封装在对象中，即使查询到的元素只有一个，也会封装到数组中返回
+        getElmentsByName//
+        
+// 
+        var img = geElementsByTagName("img")[0];
+        // 数组保存图片
+        var imgArr = ["1.jpg","2.jpg"];
+        // 创建一个变量，保存当前正在显示图片的索引
+        var index = 0;
+        // 给“上一张（prev）”这个按钮绑定一个单击事件
+        prev.onclick= function(){
+            index--;
+            if(index<0)
+            {
+                index=imgArr.lenth-1;
+            }
+            img.src=imgArr[index];
+        };
+        // 给“下一张”绑定
+        next.onclick = function(){
+            index++;
+            if(index>imgArr.lenth-1)
+            {
+                index=0;
+            }
+            img.src=imgArr[index];
+        }
+// 文字和变量插一块
+        imgs.innerHTML = "当前第"+imgArr.lenth+"张图片,当前第"+(index+1)+"张";
+
+// dom查询，获取子节点
+        // 这个是通过具体的元素节点调用
+        geElementsByTagName//-方法，返回当前节点的指定标签名后代节点
+        childNodes//-属性，表示当前节点的所有子节点，会获取包括文本节点在内的所有节点，比如子标签之间的空白换行，推荐children属性，获取当前节点的所有子元素
+        firstChild//-属性，表示当前节点的第一个子节点
+        lastChild//-属性，表示当前节点的最后一个子节点
+
+// dom查询，获取父节点和兄弟节点
+        // 通过具体的节点调用
+        parentNode//-属性，表示当前节点的父节点（不可能获取到空白部分，因为一说父了，肯定是一个元素）
+        previousSibing//-属性，表示当前节点的前一个兄弟节点（也可能获取到空白部分）
+        nextSibling//-属性，表示当前节点的后一个兄弟节点（也可能获取到空白部分）
+        // 定义一个函数,专门用来指定元素绑定单击响应函数
+        // 参数：but 要绑定单击响应的对象的id属性值
+        function myclick(but,fun){
+            var but = document.getElementById(but);
+            but.onclick = fun;//回调函数
+
+        }
+        //为id为but的按钮绑定一个单击响应函数
+        // 1.
+        myclick("but",function(){alert(" ")
+            // 获取id为bj的节点
+            var bj = document.getElementById("bj");
+            // 返回#bj的父节点
+            var pn = bj.parentNode;
+            alert(pn.innerHTML);
+        });
+        // 2.返回前一个兄弟节点
+
+// 全选
+        // 有一个表单，全选和全不选，反选，提交
+        window.onload() = function(){
+            // 全选按钮，四个多选框全部被选中
+            // id = checkedallbutton
+            var checkedallbutton = document.getElementById("checkedallbutton");
+            checkedallbutton.onclick = function(){
+                // 获取四个多选框items
+                var items = document.getElementsByName("items");
+                for(let i=0;i<items.lenth;i++)
+                {
+                    // 选中状态调方法
+                    items[i].checked = true;
+                    // checked是input标签的内容，通过w3c查询
+                }
+            };
+            // 全不选按钮
+            var checkednobutton = document.getElementById("checkednobutton");
+            checkednobutton.onclick = function(){
+                var items = document.getElementsByName("items");
+                for(let i=0;i<items.lenth;i++)
+                {
+                    items[i].checked = false;
+                }
+            };
+            //反选按钮
+            var checkedunderbutton = document.getElementById("checkedunderbutton");
+            checkedunderbutton.onclick = function(){
+                var items = document.getElementsByName("items");
+                for(let i=0;i<items.lenth;i++)
+                {
+                    if(items[i].checked == true)
+                    {
+                        items.checked = false;
+                    }
+                    else{
+                        items.checked = true;
+                    }
+                    // items[i].checked = !items[i].checked
+                }
+            }; 
+            var sentbtn =document.getElementById("sentbtn");
+            sentbtn.onclick = function(){
+                for(let i=0;i<items.lenth;i++)
+                {
+                    if(items[i].checked)
+                    {
+                        alert(items[i].innerHTML);
+                    }
+                }
+            };
+            // 全选全不选的打勾框
+            var checkedbtn = document.getElementById("checkedbtn");
+            checkedbtn.onclick = function(){
+                // 在事件的响应函数中，响应函数是谁绑定的this就是谁，比如一个对象绑定onclick
+                for(let i=0;i<items.lenth;i++){
+                    items[i].checked = this.checked;//this为checkedbtn，说明浏览器底层肯定是以方法的形式调用的
+                }
+            };
+        };
+// 
+        document.querySelector(".classname div");//可根据css选择器来选择，ie8以上也支持，但总会返回唯一的元素，如果满足的条件有多个，则只会返回第一个
+        document.querySelectorAll("");//返回全部，以数组的形式
+
+// dom方法
+    // 创建一个节点，添加到#****下
+        // 1. document.creatElment()
+        // 可以用于创建一个元素节点对象，它需要一个标签名作为参数，将会根据该标签名创建元素节点对象，创建好并返回
+        var li = document.createElement("li");//内填标签名
+    // 创建文本节点
+        // 需要文本内容作为参数，创建好并返回
+        var text = document.createElement("***");
+        // 这个文本得是节点得子节点（不是子元素）
+    // 设置其为节点的子节点
+        // appendChild（）
+        // 向一个父节点中添加一个新的子节点
+        li.appendChild(text);
+    // 将新的里li添加到原来的合集中
+        var family = document.getElementById("family");
+        family.appendChild(li);
+        
+        family.removeChild()//删除子节点
+        family.replaceChild("new","old")//替换子节点
+        family.insertBefore()//在指定的子节点前插入新的子节点
+        family.createAttribute()//创建属性节点
+        family.createTextNode()//创建文本节点
+
+// 删
+        var alltaga = document.getElementsByTagName("a");
+        for(let i=0;i<alltaga.lenth;i++){
+            // 默认点击超链接跳转网页，不希望产生跳转行为，可以通过在响应函数的最后return false来取消默认行为
+            alltaga[i].onclick = function(){
+                // 点击超链接选择删除超链接那一行
+                tr = this.parentNode.parentNode;//当前节点的爷爷
+                // 删除之前确认一下
+                name = tr.getElementsByTagName("td")[0].innerHTML;
+                if(confirm("确认删除"+name+"吗")){
+                    tr.parentNode.removeChild//删除自己
+                }
+                return false;
+            };
+        }
+        // 这个for循环有问题，for循环会在页面加载完成后执行，而响应函数会在页面点击时执行，所以当响应函数执行后，i就等于3了
+        // 所以里面的this并不是每一次的alltaga[i]，this是指每次响应函数执行后代表的那个alltaga
+
+// 操作内联样式
+        // 1.style 属性
+        // 语法：（获取到的）元素。style。样式名 = 样式值；
+        // 注意如果样式名中含有减号，不合法，需要将这种样式修改为去掉减号，改用驼峰命名法
+        // 通过style属性修改的都是内联样式，其具有较高的优先级，除了!important
+        alltaga[0].style.backgroundColor = "red";
+        alert(alltaga[0].style.backgroundColor);
+        // 通过style读取的样式都是内联样式，没有设置内联样式会读取空值，不能读取样式表中的样式
+
+        // 2.读取元素当前生效的样式
+        // 获取当前显示的样式
+        // 元素.currentStyle.样式名（只有ie支持）
+        alert(box1.currentStyle.backgroundColor);
+        // 没颜色就输出 透明
+
+        // 3.在其他浏览器中使用
+        // getComputedStylr()
+        // 这个方法是window的方法，可以直接使用
+        // 需要两个参数，1：要获取样式的元素
+                    //  2：可以传递一个伪元素，一般传null
+        // 该方法会返回一个对象，对象中封装了当前元素对应的样式
+        // 该方法不支持ie8以下
+        var obj = getComputedStyle(bpx1,null);
+        alert(obj.width);
+
+        // 通过2、3两种获取的样式都是只读的
+
+        // 自己写一个都兼容的
+        // 参数：
+            // obj ：获取指定元素当前的样式
+            // name ：要获取的样式名
+        function getStyle(obj,name){
+            // return getComputedStyle(obj,null)[name]; 正常浏览器
+            // return obj.currentStyle[name]; ie8
+            if(getComputedStyle){//有这个方法会返回true，但对于ie8来说，它在函数体里找变量getComputerStyle,没有找到就会去全局找，最终找不到会报错 解决：if(window.getComputerStyle)
+                // 加了window就由变量变为属性，它的区别就在于，变量没找到就报错，而属性没找到会返回undefined，不会返回true或者报错
+                return getComputedStyle(obj,null)[name]; 
+            }
+            else{
+                return obj.currentStyle[name];
+            }
+
+            // 或者
+
+            if(obj.currentStyle){
+                
+            }
+        }
+
+// 其他样式相关的属性
+        // element.clientWidth
+        // element.clientHeight 
+        // 返回可见高度,宽度，返回值不带px，返回的都是数值，可以直接计算
+        // 会获取元素的宽度高度，包括内容区和内边距，不包括边框
+        // 这些属性都是只读的，不能通过它修改，改只能通过style
+        // offsetWidth
+        // offsetHeight
+        // 获取元素的整个宽度和高度，包括内容区，内边距和边框
+        // offsetParent
+        // 可以用来获取当前元素的定位父元素，会获取到离当前元素最近的开启了定位的祖先元素，如果所有祖先都没开启，返回body
+        // offsetLeft
+        // 当前元素相对于其定位父元素的水平偏移量
+        // offsetTop
+        // 当前元素相对于其定位父元素的垂直偏移量
+        scrollWidth
+        // 获取元素整个滚动区域的高度
+        scrollHeight
+        // 获取元素整个滚动区域的高度
+        scrollLeft
+        scrollTop
+        // 获取水平/垂直滚动的距离
+        scrollHeight-scrollTop==clientHeight//时，说明滚动条到底了；练习：p110
+
+
+// 事件对象
+        window.onload = function(){
+            // 例子：当鼠标在上一个areaDiv中移动时，在showMsg中显示鼠标的坐标
+            var areaDiv = document.getElementById("areaDiv");
+            var showMsg = document.getElementById("showMsg");
+            // onmousemove
+            // 该事件将会在鼠标在元素中移动中发生
+
+            // 事件对象
+            // 当**事件的响应函数**被触发时，浏览器每一次都会将一个**事件对象**作为实参传递进响应函数,但是ie8，响应函数触发时，不会传递事件对象
+                // 在ie8以下的浏览器中，是将事件对象作为window对象的属性保存的，是个全局对象
+                // 在事件对象中封装了当前事件相关的一切信息，比如，鼠标的坐标，那个按键被按下，滚轮的方向
+            areaDiv.onmousemove = function(event){//onmousemove就是一个事件 dom event，鼠标在区域内移动时
+                // event这个形参可以被访问
+                var x = event.clientX;//x的坐标
+                var y = event.clientY;//y的坐标
+                showMsg.innerHTML = "x = "+x+", y = "+y;
+                // ie8,但不兼容火狐
+                var x = window.event.clientX;//x的坐标
+                var y = window.event.clientY;//y的坐标
+                // 解决事件对象的兼容性问题
+                if(event){
+                    event = window.event;
+                }
+            };
+        };
+
+        window.onload = function(){
+            // 使div可以跟着鼠标移动
+            var box1 = document.getElementById("box1");
+            box1.onmousemove = function(){
+
+            };
+            // 相对于box1的话只要当鼠标离开了box1的区域，这个事件就响应不了，如果想鼠标在页面的任何一个地方都能使div跟随，就将事件绑定在整个文档下
+            document.onmousemove = function(event){
+                event = event||window.event;
+                var left = event.clientX;//但是clientX用于获取鼠标在当前的可见窗口的坐标，而div的偏移量是相对于整个页面的，如果页面过长，长到出现了滚动条，滚动条下滑时，clientX仍获取当前窗口鼠标的坐标，而div是相对于整个页面的
+                var top = event.clientY;
+                // 所以用pageX,pageY,鼠标相对于页面的坐标，但是这两个属性在ie8中不支持
+                // 对于ie8可以用 p112
+                box1.style.left = left +sl+ "px";
+                box1.style.top = top +st+ "px";
+
+                box1.style.left = left + "px";
+                box1.style.top = top + "px";
+            };
+        };
+
+// 事件的冒泡
+        // 所谓冒泡指的就是**事件**（比如都有点击事件）向上传导，当后代元素的事件被触发时，其祖先元素的相同事件也会被触发
+        // 在开发中，大部分冒泡都有用p113 10:34
+        // 取消冒泡
+        event.cancelBubble = true;
+
+        event.preventDefault()//组织被调用标签的默认行为
+
+// 事件的委派
+        // 希望只绑定一次事件，即可应用到多个元素上，即使元素是后添加的
+        // 我们可以尝试将其绑定给元素的共同的祖先元素，这样后代元素上的事件触发时，会一直冒泡到祖先元素，从而通过祖先元素的响应函数解决
+        ul.onclick = function(){
+            // 相当于给ul中的li绑定
+            // 但是点击整个ul背景都会触发
+            // 如果触发事件的对象是我们期望的元素，则执行否则不执行
+                // 需要知道触发事件的对象是谁，target
+            event = event||window.event;
+            event.target;//中的target表示触发事件的对象
+
+            if(event.target=="link"){// link是给li加的class，判断触发的事件对象是不是ul里的li
+                // 执行
+            }
+        }
       </script>
+    
+
+      
 </body>
 </html>
