@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Muli', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+#mouseMove{
+    height: 20px;
+    width: 20px;
+    background-color: rgb(42, 209, 235);
+    border-radius: 10px;
+    /*想设置位置，要开定位*/
+    position: absolute;
+}
+
+.container {
+  display: flex;
+  width: 90vw;
+}
+
+.panel {
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  border-radius: 50px;
+  color: white;
+  flex: 0.5;
+  margin: 10px;
+  position: relative;
+  transition: all 500ms ease-in;
+}
+
+.panel h3 {
+  font-size: 20px;
+  position: absolute;
+  bottom: 20px;
+  left: 60px;
+  opacity: 0;
+}
+
+.panel.active {
+  flex: 5;
+}
+
+.panel.active h3 {
+  opacity: 1;
+  transition: opacity 0.3s ease-in 0.4s;
+}
