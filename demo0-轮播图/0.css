@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#imgList{
+    list-style: none;
+    /* 给子元素开启绝对定位，要给父元素开启相对定位，不然会定位到窗口 */
+    position: absolute;
+    left: 0px;
+    /* li设置浮动，ul设置的宽度要满足浮动条件且最好动态设置width */
+}
+
+#outer {
+    width: 653px;
+    height: 422px;
+    background-color: grey;
+    margin: 50px auto;
+    padding: 10px 0;
+    /* 相对定位 */
+    position: relative;
+    overflow: hidden;
+}
+
+#imgList li{
+    float: left;
+    margin: 0 10px;
+}
+
+#outer img{
+    height: 422px;
+    width: 633px;
+}
+
+#navDiv a{
+    /*设置超链接浮动*/
+    float: left;
+    /*设置超链接的宽和高*/
+    width: 15px;
+    height: 15px;
+    /*设置背景颜色*/
+    background-color: white;
+    /*设置左右外边距*/
+    margin: 0 5px;
+}
+
+#navDiv{
+    position: absolute;
+    bottom: 15px;
+}
+
+#navDiv a:hover{  
+    background-color: gray;
+    opacity: 0.8;
+}
