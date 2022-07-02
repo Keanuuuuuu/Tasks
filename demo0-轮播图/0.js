@@ -22,7 +22,7 @@ window.onload = function(){
             index = this.num;
             fun();
             // imgList.style.left = -653*index+"px";
-            move(imgList,"left",-653*index,20,
+            move(imgList,"left",-653*index,30,
                 function(){
                     auto();
                     // 第20行把定时器给关了，动画执行完毕必须给再开开，
@@ -47,6 +47,13 @@ window.onload = function(){
     auto();
     
     function fun(){
+
+        if(index>=arr.length-1)
+        {
+            index = 0;
+            imgList.style.left = 0;
+        }
+
         for(var i=0;i<arr2.length;i++)
         {
             arr2[i].style.backgroundColor = "";
@@ -92,8 +99,8 @@ window.onload = function(){
     function auto(){
         timer = setInterval(function(){
             index++;
-            index %= arr2.length;
-            move(imgList,"left",-653*index,20,function(){
+            index %= arr.length;
+            move(imgList,"left",-653*index,30,function(){
                 fun();
             });
         },3000)
