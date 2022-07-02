@@ -42,3 +42,9 @@
 ### 2022.4.17
 ### review.HTML 
 * js与vue的复习笔记
+
+#### demo
+<https://Keanuuuuuu.github.io/geek2.html>
+<https://Keanuuuuuu.github.io/2.html>
+<https://Keanuuuuuu.github.io/0.html>
+<https://Keanuuuuuu.github.io/9.html>
